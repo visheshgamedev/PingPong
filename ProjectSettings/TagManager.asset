@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - AI
+  - Ball
+  - AIScore
+  - PlayerScore
+  - GameOver
   layers:
   - Default
   - TransparentFX
