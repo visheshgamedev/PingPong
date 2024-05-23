@@ -14,21 +14,28 @@ public class BallMovement : MonoBehaviour
         ballRigidbody2D = GetComponent<Rigidbody2D>();
     }
 
+    private void Start()
+    {
+        Invoke("InitialBallMovement", 2f);
+    }
+
     private void FixedUpdate()
     {
         ballRigidbody2D.velocity = Vector2.ClampMagnitude(ballRigidbody2D.velocity, ballMovementInitialSpeed + (ballMovementMultiplier * ballHitCounter));
     }
 
-    public void InitialBallMovement()
+    private void InitialBallMovement()
     {
-        ballRigidbody2D.velocity = Vector2.one * ballMovementInitialSpeed * ballMovementMultiplier;
+        if (GameManager.Instance.gameStatus)
+            ballRigidbody2D.velocity = Vector2.one * ballMovementInitialSpeed * ballMovementMultiplier;
     }
 
-    public void ResetBall()
+    private void ResetBall()
     {
         ballRigidbody2D.velocity = Vector2.zero;
         transform.position = Vector3.zero;
         ballHitCounter--;
+        Invoke("InitialBallMovement", 2f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -65,16 +72,13 @@ public class BallMovement : MonoBehaviour
         ballRigidbody2D.velocity = new Vector2(xDirection, yDirection) * ballMovementInitialSpeed * (ballMovementMultiplier * ballHitCounter);
     }
 
-    private void OnTriggerEnter2D()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (transform.position.x > 0)
-        {
-            GameManager.Instance.playerScore += 1;
-        }
-        else
-        {
-            GameManager.Instance.aiScore += 1;
-        }
-        GameManager.Instance.ResetGame();
+        if (collision.gameObject.CompareTag("PlayerScore"))
+            GameManager.Instance.AddScore("Player");
+        else if (collision.gameObject.CompareTag("AIScore"))
+            GameManager.Instance.AddScore("AI");
+
+        ResetBall();
     }
 }

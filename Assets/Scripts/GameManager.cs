@@ -8,19 +8,17 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public int finalScore = 2;
-    public int playerScore {
-        get; set;
-    }
-    public int aiScore {
-        get; set;
-    }
-
-    private BallMovement ballMovement;
-    private Text playerScoreText;
-    private Text aiScoreScoreText;
+    private int finalScore = 2;
+    private int playerScore;
+    private int aiScore;
     
-    [SerializeField] private GameObject gameOver;
+    public bool gameStatus { get; set; }
+
+
+    [SerializeField] private Text playerScoreText;
+    [SerializeField] private Text aiScoreScoreText;
+    [SerializeField] private GameObject gameOverObject;
+    [SerializeField] private Text wonMessageText;
 
     private void Awake()
     {
@@ -32,36 +30,56 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            ballMovement = GameObject.FindGameObjectWithTag("Ball").GetComponent<BallMovement>();
-            playerScoreText = GameObject.FindGameObjectWithTag("PlayerScore").GetComponent<Text>();
-            aiScoreScoreText = GameObject.FindGameObjectWithTag("AIScore").GetComponent<Text>();
         }
     }
 
     private void Start()
     {
-        Invoke("NewGame", 2f);
+        NewGame();
     }
 
     public void NewGame()
     {
         playerScore = 0;
         aiScore = 0;
-        gameOver.SetActive(false);
-        ballMovement.InitialBallMovement();
+        gameOverObject.SetActive(false);
+        gameStatus = true;
+        DisplayScore();
     }
 
-    public void ResetGame()
+    private void DisplayScore()
     {
-        ballMovement.ResetBall();
-        ballMovement.InitialBallMovement();
-
         playerScoreText.text = playerScore.ToString();
         aiScoreScoreText.text = aiScore.ToString();
     }
 
+    public void AddScore(string addScoreTo)
+    {
+        if (addScoreTo == "AI")
+        {
+            aiScore += 1;
+            
+            if (aiScore == finalScore)
+                GameOver();
+        }
+        else if (addScoreTo == "Player")
+        {
+            playerScore += 1;
+
+            if (playerScore == finalScore)
+                GameOver();
+        }
+
+        DisplayScore();
+    }
+
     private void GameOver()
     {
-        gameOver.SetActive(true);
+        gameOverObject.SetActive(true);
+        if (aiScore == finalScore)
+            wonMessageText.text = "AI WON";
+        else if (playerScore == finalScore)
+            wonMessageText.text = "YOU WON";
+        gameStatus = false;
     }
 }

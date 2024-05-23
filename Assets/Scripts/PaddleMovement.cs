@@ -22,6 +22,7 @@ public class PaddleMovement : MonoBehaviour
         if (isAI)
         {
             AIMovement();
+            paddleMovementSpeed = 0.5f;
         }
         else
         {
