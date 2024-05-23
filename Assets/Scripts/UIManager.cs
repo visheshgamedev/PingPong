@@ -1,27 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public void PlayGame()
+
+    [SerializeField] private Text playerScoreText;
+    [SerializeField] private Text aiScoreScoreText;
+    [SerializeField] private GameObject gameOverObject;
+    [SerializeField] private Text wonMessageText;
+
+    private void Awake()
     {
-        SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+        gameOverObject.SetActive(false);
     }
 
-    public void ExitGame()
+    private void Update()
     {
-        Application.Quit();
+        DisplayScore();
+        if (!GameManager.Instance.gameStatus)
+        {
+            GameOver();
+        }
     }
 
-    public void MainMenu()
+    private void DisplayScore()
     {
-        SceneManager.LoadScene("MainMenuScene", LoadSceneMode.Single);
+        playerScoreText.text = GameManager.Instance.playerScore.ToString();
+        aiScoreScoreText.text = GameManager.Instance.aiScore.ToString();
     }
 
-    public void RestartGame()
+    private void GameOver()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameOverObject.SetActive(true);
+        if (GameManager.Instance.aiScore == GameManager.Instance.finalScore)
+            wonMessageText.text = "AI WON";
+        else if (GameManager.Instance.playerScore == GameManager.Instance.finalScore)
+            wonMessageText.text = "YOU WON";
+        GameManager.Instance.gameStatus = false;
     }
+
 }

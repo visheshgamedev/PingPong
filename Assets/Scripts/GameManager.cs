@@ -8,17 +8,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    private int finalScore = 2;
-    private int playerScore;
-    private int aiScore;
-    
+    public int finalScore { get; private set; } = 5;
+    public int playerScore { get; private set; }
+    public int aiScore { get; private set; }
+
     public bool gameStatus { get; set; }
-
-
-    [SerializeField] private Text playerScoreText;
-    [SerializeField] private Text aiScoreScoreText;
-    [SerializeField] private GameObject gameOverObject;
-    [SerializeField] private Text wonMessageText;
 
     private void Awake()
     {
@@ -33,24 +27,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        NewGame();
-    }
-
     public void NewGame()
     {
         playerScore = 0;
         aiScore = 0;
-        gameOverObject.SetActive(false);
         gameStatus = true;
-        DisplayScore();
-    }
-
-    private void DisplayScore()
-    {
-        playerScoreText.text = playerScore.ToString();
-        aiScoreScoreText.text = aiScore.ToString();
     }
 
     public void AddScore(string addScoreTo)
@@ -58,28 +39,20 @@ public class GameManager : MonoBehaviour
         if (addScoreTo == "AI")
         {
             aiScore += 1;
-            
+
             if (aiScore == finalScore)
-                GameOver();
+            {
+                gameStatus = false;
+            }
         }
         else if (addScoreTo == "Player")
         {
             playerScore += 1;
 
             if (playerScore == finalScore)
-                GameOver();
+            {
+                gameStatus = false;
+            }
         }
-
-        DisplayScore();
-    }
-
-    private void GameOver()
-    {
-        gameOverObject.SetActive(true);
-        if (aiScore == finalScore)
-            wonMessageText.text = "AI WON";
-        else if (playerScore == finalScore)
-            wonMessageText.text = "YOU WON";
-        gameStatus = false;
     }
 }

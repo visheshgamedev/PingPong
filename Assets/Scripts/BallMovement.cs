@@ -16,6 +16,7 @@ public class BallMovement : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.NewGame();
         Invoke("InitialBallMovement", 2f);
     }
 

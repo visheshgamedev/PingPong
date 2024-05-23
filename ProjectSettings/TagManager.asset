@@ -9,6 +9,7 @@ TagManager:
   - AIScore
   - PlayerScore
   - GameOver
+  - WonMessage
   layers:
   - Default
   - TransparentFX

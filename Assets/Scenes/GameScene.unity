@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: 360544125}
   - component: {fileID: 360544124}
   m_Layer: 0
-  m_Name: UIManager
+  m_Name: SceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -995,7 +995,7 @@ Transform:
   m_GameObject: {fileID: 649747063}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5698586, y: 0.1650383, z: 9.935076}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1104,10 +1104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd44e3aa25ac9204e820bbd1d8f53c3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScoreText: {fileID: 1778429962}
-  aiScoreScoreText: {fileID: 788460445}
-  gameOverObject: {fileID: 396414381}
-  wonMessageText: {fileID: 1894521414}
+  finalScore: 10
 --- !u!4 &704732598
 Transform:
   m_ObjectHideFlags: 0
@@ -1453,7 +1450,7 @@ Transform:
   m_GameObject: {fileID: 1140008746}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5698586, y: 0.1650383, z: 9.935076}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1813,7 +1810,7 @@ Transform:
   m_GameObject: {fileID: 1421235853}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5698586, y: 0.1650383, z: 9.935076}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2000,7 +1997,7 @@ Transform:
   m_GameObject: {fileID: 1795067971}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5698586, y: 0.1650383, z: 9.935076}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2033,7 +2030,7 @@ Transform:
   m_GameObject: {fileID: 1802232465}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5698586, y: 0.1650383, z: 9.935076}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2054,7 +2051,7 @@ GameObject:
   - component: {fileID: 1894521414}
   m_Layer: 5
   m_Name: WonMessage
-  m_TagString: Untagged
+  m_TagString: WonMessage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2145,7 +2142,7 @@ Transform:
   m_GameObject: {fileID: 1937354947}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5698586, y: -0.1650383, z: -9.935076}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2328,12 +2325,61 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAI: 0
+--- !u!1 &2111595940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2111595942}
+  - component: {fileID: 2111595941}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2111595941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111595940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2fe27f7c2240d4f868880cc33a8d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerScoreText: {fileID: 1778429962}
+  aiScoreScoreText: {fileID: 788460445}
+  gameOverObject: {fileID: 396414381}
+  wonMessageText: {fileID: 1894521414}
+--- !u!4 &2111595942
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111595940}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 704732598}
   - {fileID: 360544125}
+  - {fileID: 2111595942}
   - {fileID: 519420032}
   - {fileID: 1937354948}
   - {fileID: 178705684}
