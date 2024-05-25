@@ -3,7 +3,7 @@ A very simple single player ping pong game.
 
 You can download the playable build from - https://visheshshahani.itch.io/ping-pong
 
-Things that I've implemented -
+##Things that I've implemented -
 1. A very simple Main Menu.
 2. An AI paddle which moves along the Y axis of the ball.
 3. Player paddle Movement, Up and Down.
@@ -17,10 +17,10 @@ Things that I've implemented -
 6. A scene changer script which handles all the scene changes in the game and the game quit functionality.
 7. A UI manager which handles the display of current score and Game Over display.
 
-Thing's that I am planning to implement -
+##Thing's that I am planning to implement -
 1. A playable version for android.
 2. 2 player local co-op.
 
-Following are the bugs
+##Following are the bugs
 1. Ball velocity decreases or increase upon paddle and border collision
 2. Score is updated every frame in UIManager script.
