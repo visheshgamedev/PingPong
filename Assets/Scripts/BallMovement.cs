@@ -35,7 +35,7 @@ public class BallMovement : MonoBehaviour
     {
         ballRigidbody2D.velocity = Vector2.zero;
         transform.position = Vector3.zero;
-        ballHitCounter--;
+        ballHitCounter = 1;
         Invoke("InitialBallMovement", 2f);
     }
 
